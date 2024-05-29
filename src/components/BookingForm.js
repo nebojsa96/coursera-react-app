@@ -1,20 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./BookingForm.css";
 
-const availableTimes = [
-    "17:00",
-    "18:00",
-    "19:00",
-    "20:00",
-    "21:00",
-    "22:00"
-];
-
-function BookingForm() {
+function BookingForm(props) {
   const [bookingDate, setBookingDate] = useState("");
-  const [bookingTime, setBookingTime] = useState("17:00");
+  const [bookingTime, setBookingTime] = useState(props.availableTimes[0]);
   const [guestsNumber, setGuestsNumber] = useState("1");
   const [occasion, setOccasion] = useState("Birthday");
+
+  useEffect(() => {
+    setBookingTime(props.availableTimes[0]);
+  }, [props.availableTimes]);
 
   const getIsFormValid = () => {
     // Implement this function
@@ -24,13 +19,13 @@ function BookingForm() {
   const clearForm = () => {
     // Implement this function
     setBookingDate("");
-    setBookingTime("17:00");
     setGuestsNumber("1");
     setOccasion("Birthday");
   };
 
   const handleSubmit = (e) => {
-    alert("Reservation created!");
+    props.updateTimes(bookingTime);
+    alert(`Reservation created for: ${bookingDate} ${bookingTime}`);
     const formData = {
         date: bookingDate,
         time: bookingTime,
@@ -52,6 +47,7 @@ function BookingForm() {
         <input
           type="date"
           id="res-date"
+          data-testid="res-date"
           value={bookingDate}
           required
           onChange={(e) => setBookingDate(e.target.value)}
@@ -60,11 +56,12 @@ function BookingForm() {
           Choose time
         </label>
         <select
-          id="res-time "
+          id="res-time"
+          data-testid="res-time"
           value={bookingTime}
           onChange={(e) => setBookingTime(e.target.value)}
         >
-            {availableTimes.map(t =>  
+            {props.availableTimes.map(t =>
                 <option value={t} key={t}>{t}</option>
             )}
         </select>
@@ -77,6 +74,7 @@ function BookingForm() {
           min="1"
           max="10"
           id="guests"
+          data-testid="guests"
           value={guestsNumber}
           onChange={(e) => setGuestsNumber(e.target.value)}
         />
@@ -85,6 +83,7 @@ function BookingForm() {
         </label>
         <select
           id="occasion"
+          data-testid="occasion"
           value={occasion}
           onChange={(e) => setOccasion(e.target.value)}
         >
