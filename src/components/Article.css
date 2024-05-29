@@ -1,0 +1,50 @@
+article {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+  padding: 20px;
+  border-radius: 15px;
+  height: calc(100% - 75px);
+}
+
+article:hover {
+  background-color: #edefee;
+  animation: article-scale 0.3s both;
+}
+
+
+article img {
+    height: 275px;
+    width: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
+    border-radius: 13px;
+    margin-bottom: 15px;
+}
+
+article .header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+article .header .price {
+    color: var(--secondary1);
+}
+
+article .desc {
+    /* white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; */
+}
+
+article a {
+    text-decoration: none;
+    color: var(--highlight2);
+    font-weight: 600;
+}
+
+article a:hover {
+  color: #599124;
+}

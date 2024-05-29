@@ -1,0 +1,24 @@
+footer {
+  display: flex;
+  height: 80px;
+  background-color: #edefee;
+}
+
+footer .footer-left,
+footer .footer-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+footer .footer-left img {
+  height: 50px;
+  width: auto;
+  margin-left: 20px;
+}
+
+footer .footer-right {
+  color: var(--primary1);
+  border-top: 2px solid #27877f;
+  justify-content: center;
+}
