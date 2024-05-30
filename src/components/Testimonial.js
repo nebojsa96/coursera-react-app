@@ -3,14 +3,12 @@ import './Testimonial.css';
 function Testimonial(props) {
     return (
         <article className="testimonial">
-            <img src={props.img} alt="article" />
-            <div className="header">
-                <span className="card-title">{props.title}</span>
-                <span className="card-title price">{props.price}</span>
+            <label className="card-title">Rating: <span className="rating">{props.rating}</span></label>
+            <div className="row">
+                <img src={props.img} alt="testimonial" />
+                <span className="card-title">{props.name}</span>
             </div>
-            <span>{props.desc}</span>
-            <br />
-            <a href={props.link}>Order a delivery</a>
+            <span>{props.review}</span>
         </article>
     )
 }

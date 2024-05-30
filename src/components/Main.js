@@ -1,9 +1,13 @@
 import "./Main.css";
 import Article from "./Article";
 import Testimonial from "./Testimonial";
-import dish1 from "../assets/images/greek salad.jpg";
-import dish2 from "../assets/images/restauranfood.jpg";
-import dish3 from "../assets/images/lemon dessert.jpg";
+
+import dish1_img from "../assets/images/greek salad.jpg";
+import dish2_img from "../assets/images/restauranfood.jpg";
+import dish3_img from "../assets/images/lemon dessert.jpg";
+import testimonial_img from "../assets/images/Mario and Adrian b.jpg";
+import chef_img from "../assets/images/restaurant chef B.jpg";
+import restaurant_img from "../assets/images/restaurant.jpg";
 
 const articles = [
     {
@@ -11,10 +15,8 @@ const articles = [
         desc: `Lorem Ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum has been the industry's standard dummy text
         ever since the 1500s, when an unknown printer took a galley of type
-        and scrambled it to make a type specimen book. It has survived not
-        only five centuries, but also the leap into electronic typesetting,
-        remaining essentially unchanged.`,
-        img: dish1,
+        and scrambled it to make a type specimen book.`,
+        img: dish1_img,
         link: "index.html",
         price: "$12.99"
     },
@@ -23,10 +25,8 @@ const articles = [
         desc: `Lorem Ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum has been the industry's standard dummy text
         ever since the 1500s, when an unknown printer took a galley of type
-        and scrambled it to make a type specimen book. It has survived not
-        only five centuries, but also the leap into electronic typesetting,
-        remaining essentially unchanged.`,
-        img: dish2,
+        and scrambled it to make a type specimen book.`,
+        img: dish2_img,
         link: "index.html",
         price: "$5.99"
     },
@@ -35,10 +35,8 @@ const articles = [
         desc: `Lorem Ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum has been the industry's standard dummy text
         ever since the 1500s, when an unknown printer took a galley of type
-        and scrambled it to make a type specimen book. It has survived not
-        only five centuries, but also the leap into electronic typesetting,
-        remaining essentially unchanged.`,
-        img: dish3,
+        and scrambled it to make a type specimen book.`,
+        img: dish3_img,
         link: "index.html",
         price: "$5.00"
     }
@@ -46,32 +44,28 @@ const articles = [
 
 const testimonials = [
     {
-        name: "Name",
+        name: "Mario",
         rating: 5,
-        review: `Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry.`,
-        img: dish1,
+        review: `Lorem Ipsum is simply dummy text.`,
+        img: testimonial_img,
     },
     {
-        name: "Name",
-        rating: 5,
-        review: `Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry.`,
-        img: dish1
+        name: "Adrian",
+        rating: 4,
+        review: `Lorem Ipsum is simply dummy text.`,
+        img: testimonial_img
     },
     {
-        name: "Name",
+        name: "Tony",
         rating: 5,
-        review: `Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry.`,
-        img: dish1
+        review: `Lorem Ipsum is simply dummy text.`,
+        img: testimonial_img
     },
     {
-        name: "Name",
-        rating: 5,
-        review: `Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry.`,
-        img: dish1
+        name: "Jasmine",
+        rating: 3,
+        review: `Lorem Ipsum is simply dummy text.`,
+        img: testimonial_img
     }
 ]
 
@@ -81,8 +75,8 @@ function Main() {
     <main className="home">
       <section className="section1">
         <div className="left">
-          <h2 className="title display-title">Little Lemon</h2>
-          <h6>Chicago</h6>
+          <label className="title display-title">Little Lemon</label>
+          <label className="sub-title">Chicago</label>
           <span>
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text
@@ -93,12 +87,12 @@ function Main() {
           <div className="button button-primary">Reserve a Table</div>
         </div>
         <div className="right">
-          <img src={dish2} alt="logo" />
+          <img src={dish2_img} alt="logo" />
         </div>
       </section>
       <section className="section2">
         <div className="header">
-          <h2>Specials</h2>
+          <label className="sub-title">Specials</label>
           <div className="button button-primary">Online Menu</div>
         </div>
         {
@@ -116,24 +110,26 @@ function Main() {
       </section>
       <section className="section3">
         <div className="header">
-          <h2>Testimonials</h2>
+          <label className="sub-title">Testimonials</label>
         </div>
+        <div className="cards">
         {
             testimonials.map(t =>
                 <Testimonial
-                    title={t.name}
-                    price={t.rating}
-                    desc={t.review}
+                    name={t.name}
+                    rating={t.rating}
+                    review={t.review}
                     img={t.img}
                     key={t.name}
                 />
             )
         }
+        </div>
       </section>
       <section className="section4">
         <div className="left">
-          <h2 className="title display-title">Little Lemon</h2>
-          <h6>Chicago</h6>
+          <label className="title display-title">Little Lemon</label>
+          <label className="sub-title">Chicago</label>
           <span>
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text
@@ -142,7 +138,8 @@ function Main() {
           </span>
         </div>
         <div className="right">
-          <img src={dish2} alt="logo" />
+          <img src={restaurant_img} alt="restaurant" />
+          <img src={chef_img} alt="chef" />
         </div>
       </section>
     </main>
