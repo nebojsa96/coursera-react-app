@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import "./Main.css";
 import Article from "./Article";
 import Testimonial from "./Testimonial";
@@ -84,7 +86,9 @@ function Main() {
             and scrambled it to make a type specimen book.
           </span>
           <br />
-          <div className="button button-primary">Reserve a Table</div>
+          <div className="button button-primary">
+            <Link to="/booking" className="nav-item">Reserve a Table</Link>
+          </div>
         </div>
         <div className="right">
           <img src={dish2_img} alt="logo" />
