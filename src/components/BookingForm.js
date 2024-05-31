@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import "./BookingForm.css";
 
+const today = new Date().toISOString().split('T')[0];
+
 function BookingForm(props) {
-  const [bookingDate, setBookingDate] = useState("");
+  const [bookingDate, setBookingDate] = useState(today);
   const [bookingTime, setBookingTime] = useState(props.availableTimes[0]);
   const [guestsNumber, setGuestsNumber] = useState("1");
   const [occasion, setOccasion] = useState("Birthday");
@@ -17,23 +19,22 @@ function BookingForm(props) {
   };
 
   const clearForm = () => {
-    // Implement this function
-    setBookingDate("");
+    setBookingDate(today);
     setGuestsNumber("1");
     setOccasion("Birthday");
   };
 
   const handleSubmit = (e) => {
-    props.updateTimes(bookingTime);
-    alert(`Reservation created for: ${bookingDate} ${bookingTime}`);
     const formData = {
         date: bookingDate,
         time: bookingTime,
         guests: guestsNumber,
         occasion: occasion
     }
+    props.updateTimes(formData.date);
+    alert(`Reservation created for: ${bookingDate} ${bookingTime}`);
     console.log(formData);
-    clearForm();
+    // clearForm();
     e.preventDefault();
   };
 
@@ -49,8 +50,12 @@ function BookingForm(props) {
           id="res-date"
           data-testid="res-date"
           value={bookingDate}
+          min={today}
           required
-          onChange={(e) => setBookingDate(e.target.value)}
+          onChange={(e) => { 
+            setBookingDate(e.target.value);
+            props.updateTimes(e.target.value);
+          }}
         />
         <label className="card-title" htmlFor="res-time">
           Choose time

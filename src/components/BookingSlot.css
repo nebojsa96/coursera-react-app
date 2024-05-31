@@ -1,0 +1,19 @@
+.booking-slots {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.booking-slot {
+  display: flex;
+  flex: 1;
+  height: 50px;
+}
+
+.booking-slot.available {
+  background-color: green;
+}
+
+.booking-slot.reserved {
+  background-color: red;
+}
