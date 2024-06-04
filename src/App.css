@@ -5,18 +5,43 @@
   --secondary2: #fbdabb;
   --highlight1: #edefee;
   --highlight2: #333333;
-  --success: #388E3C;
-  --error: #C62828;
+  --success: #388e3c;
+  --error: #c62828;
+  --xs: 0;
+  --sm: 576px;
+  --md: 768px;
+  --lg: 992px;
+  --xl: 1200px;
+  --xxl: 1400px;
 }
 
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+}
 
-header, footer,
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+}
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {
+}
+
+header,
+footer,
 main section {
   display: flex;
   /* flex-wrap: wrap; */
   align-items: center;
   height: 100%;
-  padding: 0 13%;
 }
 
 main {
@@ -25,51 +50,51 @@ main {
 }
 
 .display-title {
-  font-family:  'Markazi Text', sans-serif;
+  font-family: "Markazi Text", sans-serif;
   font-weight: 500;
   font-size: 64px;
   margin-bottom: 10px;
 }
 
 .sub-title {
-  font-family:  'Markazi Text', sans-serif;
+  font-family: "Markazi Text", sans-serif;
   font-weight: 400;
   font-size: 40px;
   margin-bottom: 10px;
 }
 
 .lead-text {
-  font-family:  'Karla', sans-serif;
+  font-family: "Karla", sans-serif;
   font-weight: 500;
   font-size: 18px;
 }
 
 .section-title {
-  font-family:  'Karla', sans-serif;
+  font-family: "Karla", sans-serif;
   font-weight: 800;
   font-size: 20px;
 }
 
 .section-category {
-  font-family:  'Karla', sans-serif;
+  font-family: "Karla", sans-serif;
   font-weight: 800;
   font-size: 16px;
 }
 
 .card-title {
-  font-family:  'Karla', sans-serif;
+  font-family: "Karla", sans-serif;
   font-weight: 700;
   font-size: 18px;
 }
 
 .paragraph {
-  font-family:  'Karla', sans-serif;
+  font-family: "Karla", sans-serif;
   font-weight: 400;
   font-size: 16px;
 }
 
 .highlighted {
-  font-family:  'Karla', sans-serif;
+  font-family: "Karla", sans-serif;
   font-weight: 500;
   font-size: 16px;
 }
@@ -105,6 +130,19 @@ main {
   color: black;
 }
 
+@media (min-width: 1200px) {
+  header, footer,
+  main section {
+    padding: 0 13%;
+  }
+}
+
+@media (min-width: 768px) {
+  header, footer,
+  main section {
+    padding: 0 5%;
+  }
+}
 
 @keyframes button-scale {
   from {
