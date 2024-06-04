@@ -1,104 +1,127 @@
 import { useState, useEffect } from "react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+
 import "./BookingForm.css";
 
-const today = new Date().toISOString().split('T')[0];
+const today = new Date().toISOString().split("T")[0];
 
 function BookingForm(props) {
-  const [bookingDate, setBookingDate] = useState(today);
-  const [bookingTime, setBookingTime] = useState(props.availableTimes[0]);
-  const [guestsNumber, setGuestsNumber] = useState("1");
-  const [occasion, setOccasion] = useState("Birthday");
-
   useEffect(() => {
-    setBookingTime(props.availableTimes[0]);
+    formik.setFieldValue("time", props.availableTimes[0]);
   }, [props.availableTimes]);
 
-  const getIsFormValid = () => {
-    // Implement this function
-    return bookingDate;
-  };
+  const formik = useFormik({
+    initialValues: {
+      date: today,
+      time: props.availableTimes[0],
+      guests: 1,
+      occasion: "Birthday",
+    },
+    onSubmit: (values) => {
+      handleSubmit(values);
+    },
+    validationSchema: Yup.object({
+      date: Yup.string().required("Field is required"),
+      time: Yup.string().required("Field is required"),
+      guests: Yup.number().min(1, "Minimum 1 guest").max(10, "Maximum 10 guests").required("Field is required"),
+      occasion: Yup.string().required("Field is required"),
+    }),
+  });
 
-  const clearForm = () => {
-    setBookingDate(today);
-    setGuestsNumber("1");
-    setOccasion("Birthday");
-  };
-
-  const handleSubmit = (e) => {
-    const formData = {
-        date: bookingDate,
-        time: bookingTime,
-        guests: guestsNumber,
-        occasion: occasion
-    }
-    props.submitForm(formData);
+  const handleSubmit = (formData) => {
     console.log(formData);
-    // clearForm();
-    e.preventDefault();
+    props.submitForm(formData);
   };
 
   return (
     <main className="booking">
       <h2>Reserve a Table</h2>
-      <form onSubmit={handleSubmit}>
-        <label className="card-title" htmlFor="res-date">
-          Choose date <span>*</span>
-        </label>
-        <input
-          type="date"
-          id="res-date"
-          data-testid="res-date"
-          value={bookingDate}
-          min={today}
-          required
-          onChange={(e) => { 
-            setBookingDate(e.target.value);
-            props.updateTimes(e.target.value);
-          }}
-        />
-        <label className="card-title" htmlFor="res-time">
-          Choose time
-        </label>
-        {props.children}
-        <select
-          id="res-time"
-          data-testid="res-time"
-          value={bookingTime}
-          onChange={(e) => setBookingTime(e.target.value)}
-        >
-            {props.availableTimes.map(t =>
-                <option value={t} key={t}>{t}</option>
-            )}
-        </select>
-        <label className="card-title" htmlFor="guests">
-          Number of guests
-        </label>
-        <input
-          type="number"
-          placeholder="1"
-          min="1"
-          max="10"
-          id="guests"
-          data-testid="guests"
-          value={guestsNumber}
-          onChange={(e) => setGuestsNumber(e.target.value)}
-        />
-        <label className="card-title" htmlFor="occasion">
-          Occasion
-        </label>
-        <select
-          id="occasion"
-          data-testid="occasion"
-          value={occasion}
-          onChange={(e) => setOccasion(e.target.value)}
-        >
-          <option value="Birthday">Birthday</option>
-          <option value="Anniversary">Anniversary</option>
-        </select>
+      <form onSubmit={formik.handleSubmit}>
+        <div className="form-field">
+          <label className="card-title" htmlFor="date">
+            Choose date <span>*</span>
+          </label>
+          <input
+            type="date"
+            id="date"
+            data-testid="date"
+            value={formik.values.date}
+            min={today}
+            className={formik.errors.date ? "invalid" : ""}
+            onChange={(e) => {
+              formik.handleChange(e);
+              props.updateTimes(e.target.value);
+            }}
+          />
+          {formik.errors.date ? (
+            <small className="error-msg">{formik.errors.date}</small>
+          ) : null}
+        </div>
+        <div className="form-field">
+          <label className="card-title" htmlFor="time">
+            Choose time <span>*</span>
+          </label>
+          <select
+            id="time"
+            data-testid="time"
+            className={formik.errors.time ? "invalid" : ""}
+            value={formik.values.time}
+            onChange={formik.handleChange}
+          >
+            {props.availableTimes.map((t) => (
+              <option value={t} key={t}>
+                {t}
+              </option>
+            ))}
+          </select>
+          {formik.errors.time ? (
+            <small className="error-msg">{formik.errors.time}</small>
+          ) : null}
+          {props.children}
+        </div>
+        <div className="form-field">
+          <label className="card-title" htmlFor="guests">
+            Number of guests <span>*</span>
+          </label>
+          <input
+            type="number"
+            placeholder="1"
+            id="guests"
+            data-testid="guests"
+            min="1"
+            max="10"
+            className={formik.errors.guests ? "invalid" : ""}
+            value={formik.values.guests}
+            onChange={formik.handleChange}
+          />
+          {formik.errors.guests ? (
+            <small className="error-msg">{formik.errors.guests}</small>
+          ) : null}
+        </div>
+        <div className="form-field">
+          <label className="card-title" htmlFor="occasion">
+            Occasion <span>*</span>
+          </label>
+          <select
+            id="occasion"
+            data-testid="occasion"
+            className={formik.errors.occasion ? "invalid" : ""}
+            value={formik.values.occasion}
+            onChange={formik.handleChange}
+          >
+            <option value="Birthday">Birthday</option>
+            <option value="Anniversary">Anniversary</option>
+          </select>
+          {formik.errors.occasion ? (
+            <small className="error-msg">{formik.errors.occasion}</small>
+          ) : null}
+        </div>
         <button
           className="button button-primary"
           type="submit"
-          disabled={!getIsFormValid()}
+          aria-label="Submit form"
+          disabled={!formik.isValid}
         >
           Make Your reservation
         </button>

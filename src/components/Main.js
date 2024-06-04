@@ -86,7 +86,7 @@ function Main() {
             and scrambled it to make a type specimen book.
           </span>
           <br />
-          <div className="button button-primary">
+          <div className="button button-primary" aria-label="Reserve a table">
             <Link to="/booking" className="nav-item">Reserve a Table</Link>
           </div>
         </div>

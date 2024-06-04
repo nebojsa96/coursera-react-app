@@ -19,8 +19,16 @@ main.booking form {
   margin-top: 20px;
 }
 
+main.booking form .form-field label {
+  margin-bottom: 5px;
+}
+
 main.booking label span {
-    color: red;
+    color: var(--error);
+}
+
+main.booking .error-msg {
+  color: var(--error);
 }
 
 main.booking input,
@@ -30,12 +38,13 @@ main.booking select {
   font-size: 18px;
   border-radius: 10px;
   padding: 0 10px;
+  margin-top: 5px;
 }
-/* 
-main.booking input:invalid,
-main.booking select:invalid {
-    border: 1px solid red;
-} */
+
+main.booking input.invalid,
+main.booking select.invalid {
+    border: 1px solid var(--error);
+}
 
 main.booking button {
   margin-top: 30px;
