@@ -1,19 +1,23 @@
 .booking-slots {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
   width: 100%;
 }
 
 .booking-slot {
-  display: flex;
-  flex: 1;
   height: 50px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
 }
 
 .booking-slot.available {
-  background-color: green;
+  background-color: var(--success);
 }
 
 .booking-slot.reserved {
-  background-color: red;
+  background-color: var(--error);
 }

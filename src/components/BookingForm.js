@@ -31,8 +31,7 @@ function BookingForm(props) {
         guests: guestsNumber,
         occasion: occasion
     }
-    props.updateTimes(formData.date);
-    alert(`Reservation created for: ${bookingDate} ${bookingTime}`);
+    props.submitForm(formData);
     console.log(formData);
     // clearForm();
     e.preventDefault();
@@ -60,6 +59,7 @@ function BookingForm(props) {
         <label className="card-title" htmlFor="res-time">
           Choose time
         </label>
+        {props.children}
         <select
           id="res-time"
           data-testid="res-time"

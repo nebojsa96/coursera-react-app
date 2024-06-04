@@ -1,4 +1,6 @@
 import { useReducer, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import "../App.css";
 import BookingForm from "../components/BookingForm";
 import BookingSlot from "../components/BookingSlot";
@@ -17,17 +19,18 @@ function timesReducer(state, action) {
 
 function BookingPage() {
   const [availableTimes, dispatch] = useReducer(timesReducer, []);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if(window.fetchAPI) {
+    if (window.fetchAPI) {
       initializeTimes();
     }
   }, []);
 
-
   const initializeTimes = () => {
     const today = getDateString(new Date());
-    window.fetchAPI(today)
+    window
+      .fetchAPI(today)
       // .then((response) => response.json())
       .then((jsonData) => {
         dispatch({ type: "init", initialTimes: jsonData });
@@ -36,49 +39,55 @@ function BookingPage() {
   };
 
   const updateTimes = (date) => {
-    // window.submitAPI(formData)
-    //   // .then((response) => response.json())
-    //   .then((result) => {
-    //     if(result) {
-          window.fetchAPI(date)
-          // .then((response) => response.json())
-          .then((jsonData) => {
-            dispatch({ type: "update", updatedTimes: jsonData});
-          })
-          .catch((error) => console.log(error));
-      //   }
-      // })
-      // .catch((error) => console.log(error));
+    window
+      .fetchAPI(date)
+      // .then((response) => response.json())
+      .then((jsonData) => {
+        dispatch({ type: "update", updatedTimes: jsonData });
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const submitForm = (form) => {
+    window
+      .submitAPI(form)
+      //   // .then((response) => response.json())
+      .then((result) => {
+        if (result) {
+          navigate("/booking-confirmation");
+        }
+      })
+      .catch((error) => console.log(error));
   };
 
   return (
     <>
-      {availableTimes.map((time) => (
-        <span>{time} | </span>
-      ))}
-      <div className="booking-slots">
-        {
-          possibleTimes.map(s => 
-            <BookingSlot reserved={false}/>
-          )
-        }
-      </div>
       <BookingForm
         availableTimes={availableTimes}
         updateTimes={(date) => {
           updateTimes(date);
         }}
+        submitForm={(form) => {
+          submitForm(form);
+        }}
+        children={
+          <div className="booking-slots">
+            {possibleTimes.map((t) => (
+              <BookingSlot reserved={!availableTimes.includes(t)} time={t} />
+            ))}
+          </div>
+        }
       />
     </>
   );
 }
 
 function getDateString(date) {
-  return date.toISOString().split('T')[0];
+  return date.toISOString().split("T")[0];
 }
 
 function getTimeString(date) {
-  return date.toTimeString().split(' ')[0].slice(0, 5);
+  return date.toTimeString().split(" ")[0].slice(0, 5);
 }
 
 export default BookingPage;
