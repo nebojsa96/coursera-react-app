@@ -1,4 +1,4 @@
-.section2 article {
+article.special {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -6,45 +6,44 @@
   background-color: #edefee;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
-  height: calc(100% - 75px);
-}
 
-.section2 article:hover {
-  animation: article-scale 0.3s both;
-}
+  &:hover {
+    animation: article-scale 0.3s both;
+  }
 
-
-.section2 article img {
+  img {
+    flex: 0 0 275px;
     height: 275px;
     width: 100%;
     object-fit: cover;
     object-position: 50% 50%;
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
-}
+  }
 
-.section2 article .body {
-  display: flex;
-  flex-direction: column;
-  padding: 0 20px 20px;
-}
-
-.section2 article .header {
+  .body {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
+    flex-direction: column;
+    padding: 0 20px 20px;
 
-.section2 article .header .price {
-    color: var(--secondary1);
-}
+    .header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
 
-.section2 article a {
-    text-decoration: none;
-    color: var(--highlight2);
-    font-weight: 600;
-}
+      .price {
+        color: var(--secondary1);
+      }
+    }
 
-.section2 article a:hover {
-  color: #599124;
+    a {
+      text-decoration: none;
+      color: var(--highlight2);
+      font-weight: 600;
+
+      &:hover {
+        color: var(--success);
+      }
+    }
+  }
 }

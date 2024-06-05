@@ -4,21 +4,21 @@
   gap: 10px;
   width: 100%;
   margin-top: 10px;
-}
 
-.booking-slot {
-  height: 50px;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 15px;
-}
+  .booking-slot {
+    height: 50px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
 
-.booking-slot.available {
-  background-color: var(--success);
-}
+    &.available {
+      background-color: var(--success);
+    }
 
-.booking-slot.reserved {
-  background-color: var(--error);
+    &.reserved {
+      background-color: var(--error);
+    }
+  }
 }

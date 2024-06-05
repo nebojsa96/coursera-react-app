@@ -8,44 +8,55 @@ main.booking {
   padding: 50px;
   margin-top: 30px;
   margin-bottom: 40px;
-}
 
-main.booking form {
-  display: flex;
-  flex-direction: column;
-  width: 500px;
-  gap: 20px;
-  align-content: center;
-  margin-top: 20px;
-}
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-content: center;
+    margin-top: 20px;
 
-main.booking form .form-field label {
-  margin-bottom: 5px;
-}
+    .form-field label {
+      margin-bottom: 5px;
+    }
 
-main.booking label span {
-    color: var(--error);
-}
+    label span {
+      color: var(--error);
+    }
 
-main.booking .error-msg {
-  color: var(--error);
-}
+    .error-msg {
+      color: var(--error);
+    }
 
-main.booking input,
-main.booking select {
-  height: 40px;
-  width: 100%;
-  font-size: 18px;
-  border-radius: 10px;
-  padding: 0 10px;
-  margin-top: 5px;
-}
+    input,
+    select {
+      height: 40px;
+      width: 100%;
+      font-size: 18px;
+      border-radius: 10px;
+      padding: 0 10px;
+      margin-top: 5px;
 
-main.booking input.invalid,
-main.booking select.invalid {
-    border: 1px solid var(--error);
-}
+      &.invalid,
+      &.invalid {
+        border: 1px solid var(--error);
+      }
+    }
 
-main.booking button {
-  margin-top: 30px;
+    button {
+      margin-top: 30px;
+    }
+  }
+
+  @media (min-width: 576px) { 
+    form {
+      width: 450px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    form {
+      width: 500px;
+    }
+  }
 }

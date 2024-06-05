@@ -99,6 +99,7 @@ function Main() {
           <label className="sub-title">Specials</label>
           <div className="button button-primary">Online Menu</div>
         </div>
+        <div className="specials">
         {
             articles.map(a =>
                 <Article
@@ -111,6 +112,7 @@ function Main() {
                 />
             )
         }
+        </div>
       </section>
       <section className="section3">
         <div className="header">

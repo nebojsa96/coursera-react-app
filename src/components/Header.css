@@ -1,12 +1,13 @@
 header {
   display: flex;
-  justify-content: center;
-  padding: 25px 0;
+  justify-content: space-evenly;
+  padding-top: 25px;
+  padding-bottom: 25px;
   background-color: white;
-}
 
-header img {
-  height: auto;
-  width: 15%;
+  img {
+    height: auto;
+    width: 15%;
+    min-width: 200px;
+  }
 }
-

@@ -2,7 +2,7 @@ import './Article.css';
 
 function Article(props) {
     return (
-        <article>
+        <article className="special">
             <img src={props.img} alt="article" />
             <div className="body">
                 <div className="header">

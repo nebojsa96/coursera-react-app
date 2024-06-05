@@ -7,134 +7,231 @@ main.home {
     "section2 section2 section2"
     "section3 section3 section3"
     "section4 section4 section4";
-  padding: 0 35px;
   gap: 20px;
   min-height: calc(100vh - 330px);
-  margin-bottom: 50px;
-}
 
-section.section1 {
-  grid-area: section1;
-  background-color: var(--primary1);
-}
+  section {
+    padding-top: 20px;
+    padding-bottom: 20px;
 
-section.section1 .left,
-section.section4 .left {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
+    .left,
+    .right {
+      flex: 1 0 100%;
+    }
 
-section.section1 .left {
-  color: white;
-}
+    .right {
+      margin-top: 10px;
+    }
 
-section.section1 .left .title {
-  color: var(--primary2);
-}
+    &.section1 {
+      grid-area: section1;
+      background-color: var(--primary1);
 
-section.section1 .right,
-section.section4 .right {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  height: 100%;
-}
+      .left {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        color: white;
 
-section.section1 .right img {
-  height: 100%;
-  width: 53%;
-  object-fit: cover;
-  object-position: 50% 50%;
-  border-radius: 15px;
-  position: relative;
-  top: 25px;
-}
+        .title {
+          color: var(--primary2);
+        }
+      }
 
-section.section1 .right img:hover {
-  transform: rotateY(360deg);
-  transition: 0.5s;
-}
+      .right {
+        display: flex;
+        justify-content: center;
 
-section.section2 {
-  grid-area: section2;
-  display: flex;
-  flex-wrap: wrap;
-  column-gap: 20px;
-  padding-top: 40px;
-  padding-bottom: 40px;
-}
+        img {
+          height: 300px;
+          width: 100%;
+          object-fit: cover;
+          object-position: 50% 50%;
+          border-radius: 15px;
+          position: relative;
+          top: 0px;
+        }
 
-section.section2 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  height: 75px;
-  margin-bottom: 30px;
-}
+        img:hover {
+          transform: rotateY(360deg);
+          transition: 0.5s;
+        }
+      }
+    }
 
-section.section3 {
-  grid-area: section3;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--primary1);
-}
+    &.section2 {
+      grid-area: section2;
+      display: flex;
+      flex-direction: column;
+      column-gap: 20px;
+      padding-top: 40px;
+      padding-bottom: 40px;
 
-section.section3 .header {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  color: var(--primary2);
-  margin-bottom: 50px;
-}
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        height: 75px;
+        margin-bottom: 30px;
+      }
 
-section.section3 .header h2 {
-  padding-top: 0;
-}
+      .specials {
+        display: flex;
+        flex-direction: column;
 
-section.section3 .cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  width: 80%;
-}
+        .special {
+          margin-bottom: 20px;
+        }
+      }
+    }
 
-section.section4 {
-  grid-area: section4;
-  background-color: white;
-}
+    &.section3 {
+      grid-area: section3;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: var(--primary1);
 
-section.section4 .left {
-  color: black;
-  flex: 1;
-}
+      .header {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        color: var(--primary2);
+        margin-bottom: 50px;
 
-section.section4 .right {
-  flex: 1;
-  display: flex;
-  width: 50%;
-  /* align-items: center; */
-  position: relative;
-}
+        h2 {
+          padding-top: 0;
+        }
+      }
 
-section.section4 .right img {
-  height: 65%;
-  width: 55%;
-  object-fit: cover;
-  object-position: 50% 50%;
-  position: absolute;
-}
+      .cards {
+        display: flex;
+        /* flex-direction: column; */
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        /* width: 80%; */
+      }
+    }
 
-section.section4 .right img:nth-child(1) {
-  top: 30%;
-  left: 20%;
-}
+    &.section4 {
+      grid-area: section4;
+      background-color: white;
+      padding-bottom: 0px;
 
-section.section4 .right img:nth-child(2) {
-  top: 20%;
-  left: 55%;
+      .left,
+      .right {
+        flex: 1 0;
+        flex-basis: 100%;
+      }
+
+      .left {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        color: black;
+        margin-bottom: 20px;
+      }
+
+      .right {
+        display: flex;
+        justify-content: center;
+        position: relative;
+
+        img {
+          height: 65%;
+          width: 55%;
+          object-fit: cover;
+          object-position: 50% 50%;
+        }
+      }
+    }
+  }
+
+  /* Small devices (landscape phones, 576px and up) */
+  @media (min-width: 576px) {
+    section {
+      &.section1 {
+        .right {
+          img {
+            height: 350px;
+          }
+        }
+      }
+    }
+  }
+
+  /* Medium devices (tablets, 768px and up) */
+  @media (min-width: 768px) {
+    section {
+      .left,
+      .right {
+        flex: 1 0 0%;
+        height: 100%;
+      }
+
+      .right {
+        margin-top: 0px;
+      }
+
+      &.section1 {
+        height: 100%;
+        .right {
+          img {
+            height: calc(100% + 40px);
+            width: 53%;
+            position: relative;
+            top: 10px;
+          }
+        }
+      }
+
+      &.section2 {
+        .specials {
+          flex-direction: row;
+
+          .special {
+            margin-left: 10px;
+            margin-right: 10px;
+          }
+        }
+      }
+
+      &.section3 {
+        .cards {
+          flex-direction: row;
+        }
+      }
+
+      &.section4 {
+        padding-bottom: 20px;
+
+        .left,
+        .right {
+          flex-basis: 50%;
+        }
+        .left {
+          margin-bottom: 0;
+        }
+
+        .right {
+          img {
+            position: absolute;
+
+            &:nth-child(1) {
+              top: 30%;
+              left: 20%;
+            }
+
+            &:nth-child(2) {
+              top: 20%;
+              left: 55%;
+            }
+          }
+        }
+      }
+    }
+  }
 }
